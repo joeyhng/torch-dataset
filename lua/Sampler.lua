@@ -365,6 +365,8 @@ local function Sampler(kind, index, label, options)
       return LabelPermutationSampler(index)
    elseif kind == 'label-distribution' then
       return LabelDistributionSampler(index, options)
+   elseif type(kind) == 'function' then
+      return kind(index)
    else
       print("Invalid sampler kind: "..kind..". See go/torch for the list of accepted samplers.")
       os.exit(1)
